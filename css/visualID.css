@@ -30,4 +30,16 @@ h4 {
   background: #d9fffc;
   text-align: left;
 }
+div.warn {    
+    background-color: #fcf2f2;
+    border-color: #dFb5b4;
+    border-left: 5px solid #dfb5b4;
+    padding: 0.5em;
+    }
+div.rq {    
+    background-color: #e2e2e2;
+    border-color: #969696;
+    border-left: 5px solid #969696;
+    padding: 0.5em;
+    }
 </style>
