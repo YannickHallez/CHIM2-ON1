@@ -4,6 +4,8 @@ import datetime, time
 from IPython.core.display import display,Image,Markdown,HTML
 _start_time   = None
 _end_time     = None
+_chrono_start = None
+_chrono_stop  = None
 
 def css_styling():
     styles = open("./css/visualID.css", "r").read()
@@ -26,6 +28,21 @@ def hdelay_ms(delay):
     ss = sec - hh*3600 - mm*60
     ms = (sec - int(sec))*1000
     return f'{hh:02.0f}:{mm:02.0f}:{ss:02.0f} {ms:03.0f}ms'
+
+def chrono_start():
+    global _chrono_start, _chrono_stop
+    _chrono_start=time.time()
+
+# return delay in seconds or in humain format
+def chrono_stop(hdelay=False):
+    global _chrono_start, _chrono_stop
+    _chrono_stop = time.time()
+    sec = _chrono_stop - _chrono_start
+    if hdelay : return hdelay_ms(sec)
+    return sec
+
+def chrono_show():
+    print('\nDuration : ', hdelay_ms(time.time() - _chrono_start))
 
 def init():
     global _start_time
@@ -51,7 +68,6 @@ def end():
     _end_time = datetime.datetime.now()
     end_time = time.strftime("%A %d %B %Y, %H:%M:%S")
     duration = hdelay_ms(_end_time - _start_time)
-    site_url = "https://fidle.cnrs.fr"
     md = f'**Fin à:** {end_time}  \n'
     md+= f'**Durée:** {duration}'
     display_md(md)
