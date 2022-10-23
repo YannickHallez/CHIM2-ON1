@@ -1,0 +1,148 @@
+
+\documentclass[12pt,a4paper]{report}
+\usepackage[utf8]{inputenc}
+%\usepackage[frenchb]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{float} % pour imposer la position avec H
+\usepackage{hyperref}
+\usepackage{listings} % pour insérer des listings
+\usepackage[lofdepth,lotdepth]{subfig} % pôur les sous-figures
+\usepackage[french]{isodate}
+\usepackage{lmodern}
+\usepackage{textcomp}
+\usepackage[margin=2cm]{geometry}
+\usepackage{tabularx}
+\usepackage{hyperref}
+
+\usepackage{xcolor}
+
+
+
+\renewcommand{\baselinestretch}{1.00} 
+
+
+\definecolor{light-gray}{gray}{0.9}
+
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+
+% Custom colors
+%\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+\usepackage{listings}
+
+% Python style for highlighting
+\newcommand\pythonstyle{\lstset{backgroundcolor = \color{lightgray},
+language=Python,
+basicstyle=\ttm,
+otherkeywords={self},             % Add keywords here
+keywordstyle=\ttb\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+frame=tb,                         % Any extra options here
+showstringspaces=false,            % 
+numbers = left
+}}
+
+
+% Python environment
+\lstnewenvironment{python}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}
+
+% Python for external files
+\newcommand\pyExternal[2][]{
+\vspace{0.5cm}{
+\pythonstyle
+\lstinputlisting[#1]{#2}
+}
+\vspace{0.5cm}}
+
+% Python for inline
+\newcommand\pyInline[1]{{\pythonstyle\lstinline!#1!}}
+
+
+
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+
+%\usepackage{}
+
+
+
+\begin{document}
+
+
+
+
+
+\section{Dosage des ions Calcium et Magnesium dans de l'eau} **
+
+Des mesures par dosage de la concentration en ions Calcium et Magnesium sont réalisées. A partir d'une série de mesures, vous allez calculer des grandeurs caractéristiques de cette série.
+
+Afin de générer artificiellement cette série de mesures, vous téléchargerez depuis moodle le fichier \pyInline{giveConcentration.py}. Vous écrirez en début de votre programme les lignes suivantes qui appellent la fonction \pyInline{genereC} du module \pyInline{giveConcentration} pour créer une \textbf{liste} appelée \pyInline{C} de \pyInline{nbr} concentrations mesurées.
+
+\pyExternal{exempleGiveConcentration.py}
+
+\textbf{Dans cet exercice, vous ne devez pas utiliser de boucles.}
+
+\begin{enumerate}
+
+\item Convertir la liste \pyInline{C} en un tableau.
+
+\item Calculer la moyenne de la concentration : $\bar{c}$.
+
+\item Trouver le minimum et le maximum de la concentration
+
+\item Calculer l'écart-type de la série de mesure sans faire de boucles. On donne la formule permettant le calcul de l'écart-type
+$$ \sigma=\sqrt{\dfrac{1}{N-1}\sum_{i=0}^{N}(c_i-\bar{c})^2}$$
+
+où $N$ est le nombre de valeurs de la série générée par  \pyInline{genereC}. Les $c_i$ correspondent aux éléments de la matrice des concentrations \pyInline{C} générée par le code ci-dessus.
+\end{enumerate}
+
+
+\section{écrêtage et lissage de courbes} ***
+
+Des mesures donnent l'évolution d'une concentration en fonction du temps.
+
+Afin de générer artificiellement cette série de mesures, vous téléchargerez depuis moodle le fichier \pyInline{decConcentration.py}. Vous écrirez en début de votre programme les lignes suivantes qui appellent la fonction \pyInline{genereC} du module \pyInline{decConcentration} pour créer une \textbf{liste} appelée \pyInline{C}.
+
+\pyExternal{exempleDecConcentration.py}
+
+
+
+\begin{enumerate}
+\item Convertir la liste \pyInline{C} en un tableau.
+
+\item Certaines mesures de concentration sont négatives suite à des erreurs de mesure. Sans faire de boucles, remplacer par la valeur 0 les valeurs négatives dans le tableau C.
+
+\item  Les données présentent beaucoup de variations d'une mesure à l'autre. Vous allez lisser ces valeurs en utilisant la méthode de la moyenne mobile. Cette méthode consiste à calculer la ième valeur du tableau des valeurs lissées, que nous appellerons $L$, comme étant la moyenne centrées autour de $C_i$ des k valeurs qui le précèdent, des k valeurs qui le suivent et de lui-même. On a ainsi la formule,
+
+$$L_i=\dfrac{1}{2k+1}\sum_{j=i-k}^{i+k}C_i$$
+
+Calculer les valeurs du tableau $L$. Vous laisserez les k premières valeurs de $L_i$ égales à celle de $C_i$ et de même pour les k dernières.
+
+Vous pouvez en exécutant \pyInline{plot(L)} voir l'effet de votre lissage. Vous pouvez vous amuser à le faire pour différentes valeurs de k.
+
+\item (facultatif) Trouver un moyen d'améliorer le traitement des k premières et des k dernières valeurs pour que le lissage concernent également cette partie des valeurs.
+\end{enumerate}
+
+
+
+
+
+
+
+
+\end{document}
