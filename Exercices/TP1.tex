@@ -1,0 +1,174 @@
+
+\documentclass[12pt,a4paper]{report}
+\usepackage[utf8]{inputenc}
+%\usepackage[frenchb]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{float} % pour imposer la position avec H
+\usepackage{hyperref}
+\usepackage{listings} % pour insérer des listings
+\usepackage[lofdepth,lotdepth]{subfig} % pôur les sous-figures
+\usepackage[french]{isodate}
+\usepackage{lmodern}
+\usepackage{textcomp}
+\usepackage[margin=2cm]{geometry}
+\usepackage{tabularx}
+\usepackage{hyperref}
+
+\usepackage{xcolor}
+
+
+
+\renewcommand{\baselinestretch}{1.00} 
+
+
+\definecolor{light-gray}{gray}{0.9}
+
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+
+% Custom colors
+%\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+\usepackage{listings}
+
+% Python style for highlighting
+\newcommand\pythonstyle{\lstset{backgroundcolor = \color{lightgray},
+language=Python,
+basicstyle=\ttm,
+otherkeywords={self},             % Add keywords here
+keywordstyle=\ttb\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+frame=tb,                         % Any extra options here
+showstringspaces=false,            % 
+numbers = left
+}}
+
+
+% Python environment
+\lstnewenvironment{python}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}
+
+% Python for external files
+\newcommand\pyExternal[2][]{
+\vspace{0.5cm}{
+\pythonstyle
+\lstinputlisting[#1]{#2}
+}
+\vspace{0.5cm}}
+
+% Python for inline
+\newcommand\pyInline[1]{{\pythonstyle\lstinline!#1!}}
+
+
+
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+
+%\usepackage{}
+
+
+
+\begin{document}
+
+
+\section{liste des alcalins} \label{sec:alcalin}
+
+\begin{enumerate}
+\item Créer une liste \pyInline{alcalin} contenant les chaînes de caractères Li, Na, K et Rb (liste de métal alcalin)et une autre liste \pyInline{numAtom} qui contient respectivement les numéros atomiques de chacun de ces éléments : 3, 11, 19,37. Afficher ces 2 listes.
+
+\item En demandant à l'utilisateur le numéro dans la liste d'un élément (compris entre 1 et 4) afficher le nom de l'élément correspondant et sa masse atomique.
+
+\item Créer les listes \pyInline{alcalin2} contenant Cs et Fr et \pyInline{numAtom2} contenant 55 et 87 qui correspondent aux données pour les métaux alcalins manquants dans les listes précédentes. A partir de ces 2 listes, compléter les listes \pyInline{alcalin} et \pyInline{numAtom}. Vérifier en affichant \pyInline{alcalin} et \pyInline{numAtom} et tester en affichant le nom du sixième élément  et sa masse atomique.
+
+\item Sans compter le nombre d'éléments, afficher le dernier élément de la liste \pyInline{alcalin}
+
+\item Afficher tous les éléments de la liste sauf le premier
+
+\item Afficher le nombre de métaux alcalins en utilisant 2 fonctions différentes.
+
+\item Afficher tous les éléments de la liste sauf les deux derniers
+
+\item Afficher tous les éléments de la liste à l'envers
+
+\item En utilisant une liste de listes, écrire une liste unique \pyInline{alcalinMetal} qui contient à la fois le symbole de ces métaux et leur numéro atomique.
+
+\item En demandant à l'utilisateur le numéro dans la liste \pyInline{alcalinMetal} d'un élément (compris entre 1 et 4) afficher le nom de l'élément correspondant et sa masse atomique en utilisant \pyInline{alcalinMetal}.
+
+\end{enumerate}
+
+
+
+\section{génération de listes d'entiers}
+
+\begin{enumerate}
+\item Générer une liste d'entiers allant de 0 à 10 compris
+
+\item Générer une liste d'entiers allant de 0 à 10 compris avec seulement les éléments pairs.
+
+\item Générer une liste d'entiers allant de 5 à 20 compris
+
+\item Générer une liste d'entiers allant de 5 à -10 compris
+
+\end{enumerate}
+
+
+\section{Remplir une liste avec des éléments saisis par l'utilisateur}
+
+\begin{enumerate}
+
+\item En utilisant une structure \pyInline{for}, demander à l'utilisateur de saisir les différents métaux alcalins (un par un) que vous placerez dans une liste  \pyInline{alcalin} et les numéros atomiques correspondant dans une liste \pyInline{numAtom}. Cette dernière liste devra contenir des entiers. Les différents métaux alcalins sont donnés dans l'exercice \ref{sec:alcalin}
+
+\textbf{Piste} : Vous partirez de listes vides que vous remplirez au fur et à mesure en utilisant \pyInline{append}.
+
+\item Après la saisie de l'ensemble des éléments, afficher sous la forme :
+
+élément : Li; numéro atomique : 3
+
+
+élément : Na; numéro atomique :11
+
+et ainsi de suite ...
+
+\end{enumerate}
+
+
+\section{Dosage des ions Calcium et Magnesium dans de l'eau}
+
+Des mesures par dosage de la concentration en ions Calcium et Magnesium sont réalisées. A partir d'une série de mesures, vous allez calculer des grandeurs caractéristiques de cette série.
+
+Afin de générer artificiellement cette série de mesures, vous téléchargerez depuis moodle le fichier \pyInline{giveConcentration.py}. Vous écrirez en début de votre programme les lignes suivantes qui appellent la fonction \pyInline{genereC} du module \pyInline{giveConcentration} pour créer une liste de \pyInline{nbr} concentrations mesurées.
+
+\pyExternal{exempleGiveConcentration.py}
+
+\begin{enumerate}
+\item Calculer la moyenne de la concentration : $\bar{c}$.
+
+\item Trouver le minimum et le maximum de la concentration
+
+\item Calculer l'écart-type de la série de mesure. On donne la formule permettant le calcul de l'écart-type
+$$ \sigma=\sqrt{\dfrac{1}{N-1}\sum_{i=0}^{N}(c_i-\bar{c})^2}$$
+
+où $N$ est le nombre de valeurs de la série générée par  \pyInline{genereC}. Les $c_i$ correspondent aux éléments de la matrice des concentrations \pyInline{C} générée par le code ci-dessus.
+\end{enumerate}
+
+
+
+
+
+
+
+
+\end{document}
