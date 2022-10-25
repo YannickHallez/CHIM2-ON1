@@ -149,7 +149,7 @@ et ainsi de suite ...
 
 Des mesures par dosage de la concentration en ions Calcium et Magnesium sont réalisées. A partir d'une série de mesures, vous allez calculer des grandeurs caractéristiques de cette série.
 
-Afin de générer artificiellement cette série de mesures, vous téléchargerez depuis moodle le fichier \pyInline{giveConcentration.py}. Vous écrirez en début de votre programme les lignes suivantes qui appellent la fonction \pyInline{genereC} du module \pyInline{giveConcentration} pour créer une liste appelée \pyInline{C} de \pyInline{nbr} concentrations mesurées.
+Afin de générer artificiellement cette série de mesures, vous téléchargerez depuis moodle le fichier \pyInline{giveConcentration.py}. Vous écrirez en début de votre programme les lignes suivantes qui appellent la fonction \pyInline{genereC} du module \pyInline{giveConcentration} pour créer une liste appelée \pyInline{C} de \pyInline{N} concentrations mesurées.
 
 \pyExternal{exempleGiveConcentration.py}
 
@@ -161,7 +161,7 @@ Afin de générer artificiellement cette série de mesures, vous téléchargerez
 \item Trouver le minimum et le maximum de la concentration
 
 \item Calculer l'écart-type de la série de mesure. On donne la formule permettant le calcul de l'écart-type
-$$ \sigma=\sqrt{\dfrac{1}{N+1}\sum_{i=0}^{N}(c_i-\bar{c})^2}$$
+$$ \sigma=\sqrt{\dfrac{1}{N}\sum_{i=0}^{N-1}(c_i-\bar{c})^2}$$
 
 où $N$ est le nombre de valeurs de la série générée par  \pyInline{genereC}. Les $c_i$ correspondent aux éléments de la matrice des concentrations \pyInline{C} générée par le code ci-dessus.
 \end{enumerate}

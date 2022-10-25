@@ -1,5 +1,5 @@
 import giveConcentration as gc
 
-nbr=150
-C = gc.genereC(nbr)
+N = 150
+C = gc.genereC(N)
 print(C)

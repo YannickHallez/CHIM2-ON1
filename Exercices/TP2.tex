@@ -1,0 +1,191 @@
+
+\documentclass[12pt,a4paper]{report}
+\usepackage[utf8]{inputenc}
+%\usepackage[frenchb]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{float} % pour imposer la position avec H
+\usepackage{hyperref}
+\usepackage{listings} % pour insérer des listings
+\usepackage[lofdepth,lotdepth]{subfig} % pôur les sous-figures
+\usepackage[french]{isodate}
+\usepackage{lmodern}
+\usepackage{textcomp}
+\usepackage[margin=2cm]{geometry}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\usepackage{siunitx}
+
+\usepackage{xcolor}
+
+
+
+\renewcommand{\baselinestretch}{1.00} 
+
+
+\definecolor{light-gray}{gray}{0.9}
+
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+
+% Custom colors
+%\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+\usepackage{listings}
+
+% Python style for highlighting
+\newcommand\pythonstyle{\lstset{backgroundcolor = \color{lightgray},
+language=Python,
+basicstyle=\ttm,
+otherkeywords={self},             % Add keywords here
+keywordstyle=\ttb\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+frame=tb,                         % Any extra options here
+showstringspaces=false,            % 
+numbers = left
+}}
+
+
+% Python environment
+\lstnewenvironment{python}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}
+
+% Python for external files
+\newcommand\pyExternal[2][]{
+\vspace{0.5cm}{
+\pythonstyle
+\lstinputlisting[#1]{#2}
+}
+\vspace{0.5cm}}
+
+% Python for inline
+\newcommand\pyInline[1]{{\pythonstyle\lstinline!#1!}}
+
+
+
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+
+%\usepackage{}
+
+
+\begin{document}
+
+
+
+
+
+\section{Dosage des ions Calcium et Magnesium dans de l'eau} **
+
+Des mesures par dosage de la concentration en ions Calcium et Magnesium sont réalisées. A partir d'une série de mesures, vous allez calculer des grandeurs caractéristiques de cette série.
+
+Afin de générer artificiellement cette série de mesures, vous téléchargerez depuis moodle le fichier \pyInline{giveConcentration.py}. Vous écrirez en début de votre programme les lignes suivantes qui appellent la fonction \pyInline{genereC} du module \pyInline{giveConcentration} pour créer une \textbf{liste} appelée \pyInline{C} de \pyInline{N} concentrations mesurées.
+
+\pyExternal{exempleGiveConcentration.py}
+
+\textbf{Dans cet exercice, vous ne devez pas utiliser de boucles.}
+
+\begin{enumerate}
+
+\item Convertir la liste \pyInline{C} en un tableau.
+
+\item Calculer la moyenne de la concentration : $\bar{c}$.
+
+\item Trouver le minimum et le maximum de la concentration
+
+\item Calculer l'écart-type de la série de mesure sans faire de boucles. On donne la formule permettant le calcul de l'écart-type
+$$ \sigma=\sqrt{\dfrac{1}{N}\sum_{i=0}^{N-1}(c_i-\bar{c})^2}$$
+
+où $N$ est le nombre de valeurs de la série générée par  \pyInline{genereC}. Les $c_i$ correspondent aux éléments de la matrice des concentrations \pyInline{C} générée par le code ci-dessus.
+\end{enumerate}
+
+\section{Vitesse des molécules dans un gaz parfait} **
+
+La théorie cinétique des gaz permet de connaître pour une température $T$ donnée (en Kelvin) la quantité d'atomes (ou de molécules pour un gaz moléculaire) dont la vitesse $v$ est comprise entre $v$ et $v+dv$ où $dv$ représente un élément de taille très petite de la vitesse comparé à la valeur de $v$ (on parle de variation infinitésimale). En langage plus familier, cela permet de connaître la fraction d'atomes ayant une certaine vitesse. Nous appellerons cette quantité $\rho(v,T)$. Cette loi de variation s'appelle la loi de Maxwell-Boltzmann.
+
+La fonction \pyInline{ddp} du module \pyInline{distribVT} permet de calculer la valeur de cette loi pour une vitesse $v$ et une température $T$ données. Pour pourvoir l'utiliser, il faut que le fichier \pyInline{distribVT.py} soit présent dans votre répertoire de travail. Dans ce module, le gaz considéré est l'Argon. L'exemple ci-dessous montre comment utiliser ce module pour calculer la valeur de la loi de Maxwell-Boltzmann pour une température $T=$ \SI{273}{\kelvin} et une vitesse de  \SI{500}{\meter\per\second}, c'est à dire $\rho(500,273)$.
+
+\pyExternal{exempleDistribVT.py}
+
+\begin{enumerate}
+
+\item Faire le nécessaire pour qu'un utilisateur puisse saisir la température de travail en faisant en sorte que l'utilisateur ne puisse pas saisir une température inférieure à la température de liquéfaction de l'argon qui est de \SI{-185,85}{\celsius} à la pression atmosphérique.  Cette valeur sera placée dans une variable \pyInline{T}. Vous choisirez dans un premier temps une valeur \SI{25}{\celsius}.
+
+\item Faire le nécessaire pour qu'un utilisateur puisse saisir la vitesse maximale du domaine des vitesses, $v_{\mathrm{max}}$.  Cette valeur sera placée dans une variable \pyInline{vMax}. Vous choisirez dans un premier temps une valeur de \SI{1500}{\meter\per\second}.
+
+
+\item Créer un tableau vitesse \pyInline{v} comprenant $n=2000$ valeurs entre \SI{0}{\meter\per\second} et $v_{\mathrm{max}}$. Calculer dans une variable \pyInline{pas}, l'écart de vitesse entre 2 vitesses successives dans le tableau \pyInline{v}.
+
+\item Créer un tableau \pyInline{val} contenant les valeurs de la loi de Maxwell-Boltzmann pour chacune des vitesses du tableau $v$.
+
+
+\item Donner la vitesse la plus probable, c'est à dire, celle qui correspond au maximum du tableau \pyInline{val}. Il ne s'agit pas d'en faire un calcul théorique (une formule existe) mais de trouver sa valeur dans le tableau vitesse \pyInline{v}.
+
+
+\item Calculer la vitesse moyenne  $\bar{v}$. Pour cela, vous utiliserez la méthode des trapèzes et la formule suivante : 
+$$ \bar{v}=\int_0^{+\infty}v \rho(v,T)dv$$.
+
+Appliquée à la méthodes des trapèzes, on a dans le cas qui nous intéresse :
+
+$$ \bar{v}={pas}\left(\dfrac{\left(v_0\rho(v_0,T) +v_{n-1}\rho(v_{n-1},T)\right) }{2} )+\sum_{i=1}^{n-2}v_i\rho(v_i,T)\right)$$
+
+Vous remarquerez que la vitesse la vitesse moyenne n'est pas la plus probable !.
+
+\textbf{AMÉLIORATIONS FACULTATIVES} (demander à l'enseignant si vous avez le temps de la traiter en séance ou s'il vaut mieux passer à l'exercice suivant) : Si vous avez réussi les questions précédentes, C'est que le sujet a été écrit pour vous faciliter la tâche. On vous a fixé les données suivantes : la température et la vitesse maximale $v_{\mathrm{max}}$. Mais si vous choisissez une température plus élevée qui vous garantit qu'un nombre important d'atomes ne vont pas dépasser les \SI{1500}{\meter\per\second} ? Il faut donc vérifier avant les calculs de la vitesse la plus probable et de $ \bar{v}$ que l'ensemble des vitesses choisies est suffisant. S'il n'est pas suffisant il faudra alors demander à l'utilisateur de choisir une valeur $v_{\mathrm{max}}$ supérieure à celle choisie précédemment. Mais comment savoir si $v_{\mathrm{max}}$ est suffisamment grande ? Pour cela, il faut s'assurer que l'intégrale
+$ I=\int_0^{v_{\mathrm{max}}}\rho(v,T)dv$ est proche de 1. Par exemple, on peut considérer que si $1-I<10^{-3}$, la plage de vitesses est suffisante. Sinon, cela signifie que la valeur saisie pour  $v_{\mathrm{max}}$ est trop faible et qu'il faut demander une valeur plus importante et ainsi de suite jusqu'à ce que $I$ vérifie $1-I<10^{-3}$. Les questions suivantes portent sur l'implémentation de ce processus.
+
+\item Calculer $I$ par la méthode des trapèzes :
+$$ I={pas}\left(\dfrac{\left(\rho(v_0,T) +\rho(v_{n-1},T)\right) }{2} )+\sum_{i=1}^{n-2}\rho(v_i,T)\right)$$
+
+\item Faire en sorte que l'utilisateur saisisse à nouveau une valeur de $v_{\mathrm{max}}$ tant que la relation $1-I<10^{-3}$ n'est pas respectée avant de calculer la vitesse la plus probable et $ \bar{v}$.
+
+Vous pouvez maintenant faire les calculs pour toutes les températures que vous voulez :)
+	
+\end{enumerate}
+
+\section{écrêtage et lissage de courbes} ***
+
+Des mesures donnent l'évolution d'une concentration en fonction du temps.
+
+Afin de générer artificiellement cette série de mesures, vous téléchargerez depuis moodle le fichier \pyInline{decConcentration.py}. Vous écrirez en début de votre programme les lignes suivantes qui appellent la fonction \pyInline{genereC} du module \pyInline{decConcentration} pour créer une \textbf{liste} appelée \pyInline{C}.
+
+\pyExternal{exempleDecConcentration.py}
+
+
+
+\begin{enumerate}
+\item Convertir la liste \pyInline{C} en un tableau.
+
+\item Certaines mesures de concentration sont négatives suite à des erreurs de mesure. Sans faire de boucles, remplacer par la valeur 0 les valeurs négatives dans le tableau C.
+
+\item  Les données présentent beaucoup de variations d'une mesure à l'autre. Vous allez lisser ces valeurs en utilisant la méthode de la moyenne mobile. Cette méthode consiste à calculer la ième valeur du tableau des valeurs lissées, que nous appellerons $L$, comme étant la moyenne centrées autour de $C_i$ des k valeurs qui le précèdent, des k valeurs qui le suivent et de lui-même. On a ainsi la formule,
+
+$$L_i=\dfrac{1}{2k+1}\sum_{j=i-k}^{i+k}C_i$$
+
+Calculer les valeurs du tableau $L$. Vous laisserez les k premières valeurs de $L_i$ égales à celle de $C_i$ et de même pour les k dernières.
+
+Vous pouvez en exécutant \pyInline{plot(L)} voir l'effet de votre lissage. Vous pouvez vous amuser à le faire pour différentes valeurs de k.
+
+\item (facultatif) Trouver un moyen d'améliorer le traitement des k premières et des k dernières valeurs pour que le lissage concernent également cette partie des valeurs.
+\end{enumerate}
+
+
+
+
+
+
+
+
+\end{document}
