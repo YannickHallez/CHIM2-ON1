@@ -1,4 +1,4 @@
-import giveConcentration as gc
+import genereConcentration as gc
 
 N = 150
 C = gc.genereC(N)
