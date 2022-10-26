@@ -1,4 +1,3 @@
-
 \documentclass[12pt,a4paper]{report}
 \usepackage[utf8]{inputenc}
 %\usepackage[frenchb]{babel}
@@ -21,7 +20,9 @@
 
 \usepackage{xcolor}
 
-
+\makeatletter
+\renewcommand{\thesection}{\@arabic\c@section}
+\makeatother
 
 \renewcommand{\baselinestretch}{1.00} 
 
@@ -80,18 +81,24 @@ numbers = left
 
 %\usepackage{}
 
+%
+%\title{TP2}
+%\date{}
 
 \begin{document}
 
+%\maketitle
+
+\begin{center}
+\textbf{{\LARGE Exercices sur les Tableaux}}
+\end{center}
 
 
-
-
-\section{Dosage des ions Calcium et Magnesium dans de l'eau} **
+\section{Dosage des ions Calcium et Magnesium dans de l'eau (version 2)} **
 
 Des mesures par dosage de la concentration en ions Calcium et Magnesium sont réalisées. A partir d'une série de mesures, vous allez calculer des grandeurs caractéristiques de cette série.
 
-Afin de générer artificiellement cette série de mesures, vous téléchargerez depuis moodle le fichier \pyInline{giveConcentration.py}. Vous écrirez en début de votre programme les lignes suivantes qui appellent la fonction \pyInline{genereC} du module \pyInline{giveConcentration} pour créer une \textbf{liste} appelée \pyInline{C} de \pyInline{N} concentrations mesurées.
+Afin de générer artificiellement cette série de mesures, vous téléchargerez depuis moodle le fichier \pyInline{genereConcentration.py}. Vous écrirez en début de votre programme les lignes suivantes qui appellent la fonction \pyInline{genereC} du module \pyInline{genereConcentration} pour créer une \textbf{liste} appelée \pyInline{C} de \pyInline{N} concentrations mesurées.
 
 \pyExternal{exempleGiveConcentration.py}
 
@@ -109,6 +116,9 @@ Afin de générer artificiellement cette série de mesures, vous téléchargerez
 $$ \sigma=\sqrt{\dfrac{1}{N}\sum_{i=0}^{N-1}(c_i-\bar{c})^2}$$
 
 où $N$ est le nombre de valeurs de la série générée par  \pyInline{genereC}. Les $c_i$ correspondent aux éléments de la matrice des concentrations \pyInline{C} générée par le code ci-dessus.
+
+\item Calculez la médiane de la série de données grâce à \pyInline{med = median(C)} et vérifiez que la valeur de \pyInline{med} correspond bien à la définition de la médiane, c'est-à-dire qu'il y a 50\% de valeurs dans la série inférieures à \pyInline{med} et  50\% de valeurs dans la série supérieures à \pyInline{med}.
+
 \end{enumerate}
 
 \section{Vitesse des molécules dans un gaz parfait} **
@@ -159,7 +169,7 @@ Vous pouvez maintenant faire les calculs pour toutes les températures que vous 
 
 Des mesures donnent l'évolution d'une concentration en fonction du temps.
 
-Afin de générer artificiellement cette série de mesures, vous téléchargerez depuis moodle le fichier \pyInline{decConcentration.py}. Vous écrirez en début de votre programme les lignes suivantes qui appellent la fonction \pyInline{genereC} du module \pyInline{decConcentration} pour créer une \textbf{liste} appelée \pyInline{C}.
+Afin de générer artificiellement cette série de mesures, vous téléchargerez depuis moodle le fichier \pyInline{genereConcentration.py}. Vous écrirez en début de votre programme les lignes suivantes qui appellent la fonction \pyInline{decC} du module \pyInline{genereConcentration} pour créer une \textbf{liste} appelée \pyInline{C}.
 
 \pyExternal{exempleDecConcentration.py}
 

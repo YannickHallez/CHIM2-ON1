@@ -21,6 +21,9 @@
 \usepackage{xcolor}
 
 
+\makeatletter
+\renewcommand{\thesection}{\@arabic\c@section}
+\makeatother
 
 \renewcommand{\baselinestretch}{1.00} 
 
@@ -83,6 +86,10 @@ numbers = left
 
 \begin{document}
 
+
+\begin{center}
+\textbf{{\LARGE Exercices sur les Listes}}
+\end{center}
 
 \section{liste des alcalins} \label{sec:alcalin}
 
@@ -149,7 +156,7 @@ et ainsi de suite ...
 
 Des mesures par dosage de la concentration en ions Calcium et Magnesium sont réalisées. A partir d'une série de mesures, vous allez calculer des grandeurs caractéristiques de cette série.
 
-Afin de générer artificiellement cette série de mesures, vous téléchargerez depuis moodle le fichier \pyInline{giveConcentration.py}. Vous écrirez en début de votre programme les lignes suivantes qui appellent la fonction \pyInline{genereC} du module \pyInline{giveConcentration} pour créer une liste appelée \pyInline{C} de \pyInline{N} concentrations mesurées.
+Afin de générer artificiellement cette série de mesures, vous téléchargerez depuis moodle le fichier \pyInline{genereConcentration.py}. Vous écrirez en début de votre programme les lignes suivantes qui appellent la fonction \pyInline{genereC} du module \pyInline{genereConcentration} pour créer une liste appelée \pyInline{C} de \pyInline{N} concentrations mesurées.
 
 \pyExternal{exempleGiveConcentration.py}
 
