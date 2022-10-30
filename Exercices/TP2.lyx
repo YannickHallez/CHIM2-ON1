@@ -1,0 +1,1811 @@
+#LyX file created by tex2lyx 2.3
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin /home/romuald/ENSEIGNEMENT/0-JupyterNotebooks/L2-CHIM2-ON1/CHIM2-ON1/Exercices/
+\textclass report
+\begin_preamble
+%\usepackage[frenchb]{babel}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{float}% pour imposer la position avec H
+\usepackage{listings}% pour insérer des listings
+% pôur les sous-figures
+\usepackage[french]{isodate}
+\usepackage{textcomp}
+\usepackage{tabularx}
+\usepackage{siunitx}
+
+
+\usepackage{xcolor}
+
+
+
+\renewcommand{\thesection}{\@arabic\c@section}
+
+
+\renewcommand{\baselinestretch}{1.00} 
+
+
+\definecolor{light-gray}{gray}{0.9}
+
+% Default fixed font does not support bold face
+\DeclareFixedFont{\ttb}{T1}{txtt}{bx}{n}{12} % for bold
+\DeclareFixedFont{\ttm}{T1}{txtt}{m}{n}{12}  % for normal
+
+% Custom colors
+%\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
+\usepackage{listings}
+
+
+% Python style for highlighting
+\newcommand{\pythonstyle}{\lstset{backgroundcolor = \color{lightgray},
+language=Python,
+basicstyle=\ttm,
+otherkeywords={self},             % Add keywords here
+keywordstyle=\ttb\color{deepblue},
+emph={MyClass,__init__},          % Custom highlighting
+emphstyle=\ttb\color{deepred},    % Custom highlighting style
+stringstyle=\color{deepgreen},
+frame=tb,                         % Any extra options here
+showstringspaces=false,            % 
+numbers = left
+}}
+
+
+% Python environment
+\lstnewenvironment{python}[1][]
+{
+\pythonstyle
+\lstset{#1}
+}
+{}
+
+% Python for external files
+\newcommand{\pyExternal}[2][]{
+\vspace{0.5cm}{
+\pythonstyle
+\lstinputlisting[#1]{#2}
+}
+\vspace{0.5cm}}
+
+% Python for inline
+\newcommand{\pyInline}[1]{{\pythonstyle\lstinline!#1!}}
+
+
+
+\newcommand{\tab}[1][1cm]{\hspace*{#1}}
+
+%\usepackage{}
+
+%
+%\title{TP2}
+%\date{}
+
+
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package none
+\inputencoding utf8
+\fontencoding T1
+\font_roman "lmodern" "default"
+\font_sans "default" "default"
+\font_typewriter "lmodern" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref true
+\pdf_bookmarks 0
+\pdf_bookmarksnumbered 0
+\pdf_bookmarksopen 0
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks 0
+\pdf_pdfborder 0
+\pdf_colorlinks 0
+\pdf_backref section
+\pdf_pdfusetitle 0
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 2
+\use_package amssymb 2
+\use_package cancel 0
+\use_package esint 1
+\use_package mathdots 0
+\use_package mathtools 0
+\use_package mhchem 0
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+%
+\backslash
+maketitle
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+
+\size largest
+Exercices sur les Tableaux
+\size default
+
+\series default
+ 
+\end_layout
+
+\begin_layout Section
+Dosage des ions Calcium et Magnesium dans de l'eau (version 2)
+\end_layout
+
+\begin_layout Standard
+**
+\end_layout
+
+\begin_layout Standard
+Des mesures par dosage de la concentration en ions Calcium et Magnesium sont réalisées. A partir d'une série de mesures, vous allez calculer des grandeurs caractéristiques de cette série.
+\end_layout
+
+\begin_layout Standard
+Afin de générer artificiellement cette série de mesures, vous téléchargerez depuis moodle le fichier 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+pyInline{
+\end_layout
+
+\end_inset
+
+genereConcentration.py
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+. Vous écrirez en début de votre programme les lignes suivantes qui appellent la fonction 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+pyInline{
+\end_layout
+
+\end_inset
+
+genereC
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ du module 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+pyInline{
+\end_layout
+
+\end_inset
+
+genereConcentration
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ pour créer une 
+\series bold
+liste
+\series default
+ appelée 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+pyInline{
+\end_layout
+
+\end_inset
+
+C
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ de 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+pyInline{
+\end_layout
+
+\end_inset
+
+N
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ concentrations mesurées.
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+pyExternal{
+\end_layout
+
+\end_inset
+
+exempleGiveConcentration.py
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Dans cet exercice, vous ne devez pas utiliser de boucles.
+\series default
+
+\end_layout
+
+\begin_layout Enumerate
+Convertir la liste 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+pyInline{
+\end_layout
+
+\end_inset
+
+C
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ en un tableau.
+\end_layout
+
+\begin_layout Enumerate
+Calculer la moyenne de la concentration : 
+\begin_inset Formula $\bar{c}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Trouver le minimum et le maximum de la concentration
+\end_layout
+
+\begin_layout Enumerate
+Calculer l'écart-type de la série de mesure sans faire de boucles. On donne la formule permettant le calcul de l'écart-type 
+\begin_inset Formula \[ \sigma=\sqrt{\dfrac{1}{N}\sum_{i=0}^{N-1}(c_i-\bar{c})^2}\]
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+où 
+\begin_inset Formula $N$
+\end_inset
+
+ est le nombre de valeurs de la série générée par 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+pyInline{
+\end_layout
+
+\end_inset
+
+genereC
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+. Les 
+\begin_inset Formula $c_i$
+\end_inset
+
+ correspondent aux éléments de la matrice des concentrations 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+pyInline{
+\end_layout
+
+\end_inset
+
+C
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ générée par le code ci-dessus.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Calculez la médiane de la série de données grâce à 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+pyInline{
+\end_layout
+
+\end_inset
+
+med = median(C)
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ et vérifiez que la valeur de 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+pyInline{
+\end_layout
+
+\end_inset
+
+med
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ correspond bien à la définition de la médiane, c'est-à-dire qu'il y a 50% de valeurs dans la série inférieures à 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+pyInline{
+\end_layout
+
+\end_inset
+
+med
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ et 50% de valeurs dans la série supérieures à 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+pyInline{
+\end_layout
+
+\end_inset
+
+med
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Vitesse des molécules dans un gaz parfait
+\end_layout
+
+\begin_layout Standard
+**
+\end_layout
+
+\begin_layout Standard
+La théorie cinétique des gaz permet de connaître pour une température 
+\begin_inset Formula $T$
+\end_inset
+
+ donnée (en Kelvin) la quantité d'atomes (ou de molécules pour un gaz moléculaire) dont la vitesse 
+\begin_inset Formula $v$
+\end_inset
+
+ est comprise entre 
+\begin_inset Formula $v$
+\end_inset
+
+ et 
+\begin_inset Formula $v+dv$
+\end_inset
+
+ où 
+\begin_inset Formula $dv$
+\end_inset
+
+ représente un élément de taille très petite de la vitesse comparé à la valeur de 
+\begin_inset Formula $v$
+\end_inset
+
+ (on parle de variation infinitésimale). En langage plus familier, cela permet de connaître la fraction d'atomes ayant une certaine vitesse. Nous appellerons cette quantité 
+\begin_inset Formula $\rho(v,T)$
+\end_inset
+
+. Cette loi de variation s'appelle la loi de Maxwell-Boltzmann.
+\end_layout
+
+\begin_layout Standard
+La fonction 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+pyInline{
+\end_layout
+
+\end_inset
+
+ddp
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ du module 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+pyInline{
+\end_layout
+
+\end_inset
+
+distribVT
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ permet de calculer la valeur de cette loi pour une vitesse 
+\begin_inset Formula $v$
+\end_inset
+
+ et une température 
+\begin_inset Formula $T$
+\end_inset
+
+ données. Pour pourvoir l'utiliser, il faut que le fichier 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+pyInline{
+\end_layout
+
+\end_inset
+
+distribVT.py
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ soit présent dans votre répertoire de travail. Dans ce module, le gaz considéré est l'Argon. L'exemple ci-dessous montre comment utiliser ce module pour calculer la valeur de la loi de Maxwell-Boltzmann pour une température 
+\begin_inset Formula $T=$
+\end_inset
+
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+SI
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+273
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+kelvin
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ et une vitesse de 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+SI
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+500
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+meter
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+per
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+second
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+, c'est à dire 
+\begin_inset Formula $\rho(500,273)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+pyExternal{
+\end_layout
+
+\end_inset
+
+exempleDistribVT.py
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Faire le nécessaire pour qu'un utilisateur puisse saisir la température de travail en faisant en sorte que l'utilisateur ne puisse pas saisir une température inférieure à la température de liquéfaction de l'argon qui est de 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+SI
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+-185,85
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+celsius
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ à la pression atmosphérique. Cette valeur sera placée dans une variable 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+pyInline{
+\end_layout
+
+\end_inset
+
+T
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+. Vous choisirez dans un premier temps une valeur 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+SI
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+25
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+celsius
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Faire le nécessaire pour qu'un utilisateur puisse saisir la vitesse maximale du domaine des vitesses, 
+\begin_inset Formula $v_{\mathrm{max}}$
+\end_inset
+
+. Cette valeur sera placée dans une variable 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+pyInline{
+\end_layout
+
+\end_inset
+
+vMax
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+. Vous choisirez dans un premier temps une valeur de 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+SI
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+1500
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+meter
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+per
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+second
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Créer un tableau vitesse 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+pyInline{
+\end_layout
+
+\end_inset
+
+v
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ comprenant 
+\begin_inset Formula $n=2000$
+\end_inset
+
+ valeurs entre 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+SI
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+0
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+meter
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+per
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+second
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ et 
+\begin_inset Formula $v_{\mathrm{max}}$
+\end_inset
+
+. Calculer dans une variable 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+pyInline{
+\end_layout
+
+\end_inset
+
+pas
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+, l'écart de vitesse entre 2 vitesses successives dans le tableau 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+pyInline{
+\end_layout
+
+\end_inset
+
+v
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Créer un tableau 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+pyInline{
+\end_layout
+
+\end_inset
+
+val
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ contenant les valeurs de la loi de Maxwell-Boltzmann pour chacune des vitesses du tableau 
+\begin_inset Formula $v$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Donner la vitesse la plus probable, c'est à dire, celle qui correspond au maximum du tableau 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+pyInline{
+\end_layout
+
+\end_inset
+
+val
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+. Il ne s'agit pas d'en faire un calcul théorique (une formule existe) mais de trouver sa valeur dans le tableau vitesse 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+pyInline{
+\end_layout
+
+\end_inset
+
+v
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Calculer la vitesse moyenne 
+\begin_inset Formula $\bar{v}$
+\end_inset
+
+. Pour cela, vous utiliserez la méthode des trapèzes et la formule suivante : 
+\begin_inset Formula \[ \bar{v}=\int_0^{+\infty}v \rho(v,T)dv\]
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Appliquée à la méthodes des trapèzes, on a dans le cas qui nous intéresse :
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset Formula \[ \bar{v}={pas}\left(\dfrac{\left(v_0\rho(v_0,T) +v_{n-1}\rho(v_{n-1},T)\right) }{2} )+\sum_{i=1}^{n-2}v_i\rho(v_i,T)\right)\]
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Vous remarquerez que la vitesse la vitesse moyenne n'est pas la plus probable !.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+AMÉLIORATIONS FACULTATIVES
+\series default
+ (demander à l'enseignant si vous avez le temps de la traiter en séance ou s'il vaut mieux passer à l'exercice suivant) : Si vous avez réussi les questions précédentes, C'est que le sujet a été écrit pour vous faciliter la tâche. On vous a fixé les données suivantes : la température et la vitesse maximale 
+\begin_inset Formula $v_{\mathrm{max}}$
+\end_inset
+
+. Mais si vous choisissez une température plus élevée qui vous garantit qu'un nombre important d'atomes ne vont pas dépasser les 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+SI
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+1500
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+{
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+meter
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+per
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+second
+\end_layout
+
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ ? Il faut donc vérifier avant les calculs de la vitesse la plus probable et de 
+\begin_inset Formula $ \bar{v}$
+\end_inset
+
+ que l'ensemble des vitesses choisies est suffisant. S'il n'est pas suffisant il faudra alors demander à l'utilisateur de choisir une valeur 
+\begin_inset Formula $v_{\mathrm{max}}$
+\end_inset
+
+ supérieure à celle choisie précédemment. Mais comment savoir si 
+\begin_inset Formula $v_{\mathrm{max}}$
+\end_inset
+
+ est suffisamment grande ? Pour cela, il faut s'assurer que l'intégrale 
+\begin_inset Formula $ I=\int_0^{v_{\mathrm{max}}}\rho(v,T)dv$
+\end_inset
+
+ est proche de 1. Par exemple, on peut considérer que si 
+\begin_inset Formula $1-I<10^{-3}$
+\end_inset
+
+, la plage de vitesses est suffisante. Sinon, cela signifie que la valeur saisie pour 
+\begin_inset Formula $v_{\mathrm{max}}$
+\end_inset
+
+ est trop faible et qu'il faut demander une valeur plus importante et ainsi de suite jusqu'à ce que 
+\begin_inset Formula $I$
+\end_inset
+
+ vérifie 
+\begin_inset Formula $1-I<10^{-3}$
+\end_inset
+
+. Les questions suivantes portent sur l'implémentation de ce processus.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Calculer 
+\begin_inset Formula $I$
+\end_inset
+
+ par la méthode des trapèzes : 
+\begin_inset Formula \[ I={pas}\left(\dfrac{\left(\rho(v_0,T) +\rho(v_{n-1},T)\right) }{2} )+\sum_{i=1}^{n-2}\rho(v_i,T)\right)\]
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Faire en sorte que l'utilisateur saisisse à nouveau une valeur de 
+\begin_inset Formula $v_{\mathrm{max}}$
+\end_inset
+
+ tant que la relation 
+\begin_inset Formula $1-I<10^{-3}$
+\end_inset
+
+ n'est pas respectée avant de calculer la vitesse la plus probable et 
+\begin_inset Formula $ \bar{v}$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Vous pouvez maintenant faire les calculs pour toutes les températures que vous voulez :)
+\end_layout
+
+\end_deeper
+\begin_layout Section
+écrêtage et lissage de courbes
+\end_layout
+
+\begin_layout Standard
+***
+\end_layout
+
+\begin_layout Standard
+Des mesures donnent l'évolution d'une concentration en fonction du temps.
+\end_layout
+
+\begin_layout Standard
+Afin de générer artificiellement cette série de mesures, vous téléchargerez depuis moodle le fichier 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+pyInline{
+\end_layout
+
+\end_inset
+
+genereConcentration.py
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+. Vous écrirez en début de votre programme les lignes suivantes qui appellent la fonction 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+pyInline{
+\end_layout
+
+\end_inset
+
+decC
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ du module 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+pyInline{
+\end_layout
+
+\end_inset
+
+genereConcentration
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ pour créer une 
+\series bold
+liste
+\series default
+ appelée 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+pyInline{
+\end_layout
+
+\end_inset
+
+C
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+pyExternal{
+\end_layout
+
+\end_inset
+
+exempleDecConcentration.py
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Convertir la liste 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+pyInline{
+\end_layout
+
+\end_inset
+
+C
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ en un tableau.
+\end_layout
+
+\begin_layout Enumerate
+Certaines mesures de concentration sont négatives suite à des erreurs de mesure. Sans faire de boucles, remplacer par la valeur 0 les valeurs négatives dans le tableau C.
+\end_layout
+
+\begin_layout Enumerate
+Les données présentent beaucoup de variations d'une mesure à l'autre. Vous allez lisser ces valeurs en utilisant la méthode de la moyenne mobile. Cette méthode consiste à calculer la ième valeur du tableau des valeurs lissées, que nous appellerons 
+\begin_inset Formula $L$
+\end_inset
+
+, comme étant la moyenne centrées autour de 
+\begin_inset Formula $C_i$
+\end_inset
+
+ des k valeurs qui le précèdent, des k valeurs qui le suivent et de lui-même. On a ainsi la formule,
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\begin_inset Formula \[L_i=\dfrac{1}{2k+1}\sum_{j=i-k}^{i+k}C_i\]
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Calculer les valeurs du tableau 
+\begin_inset Formula $L$
+\end_inset
+
+. Vous laisserez les k premières valeurs de 
+\begin_inset Formula $L_i$
+\end_inset
+
+ égales à celle de 
+\begin_inset Formula $C_i$
+\end_inset
+
+ et de même pour les k dernières.
+\end_layout
+
+\begin_layout Standard
+Vous pouvez en exécutant 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+\backslash
+pyInline{
+\end_layout
+
+\end_inset
+
+plot(L)
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+}
+\end_layout
+
+\end_inset
+
+ voir l'effet de votre lissage. Vous pouvez vous amuser à le faire pour différentes valeurs de k.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+(facultatif) Trouver un moyen d'améliorer le traitement des k premières et des k dernières valeurs pour que le lissage concernent également cette partie des valeurs. 
+\end_layout
+
+\end_body
+\end_document
