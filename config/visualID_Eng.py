@@ -79,13 +79,13 @@ def init(pwy):
     start_time = _start_time.strftime("%A %d %B %Y, %H:%M:%S")
     _h = platform.uname()
     h = _h[1]+" ("+_h[0]+")"
-    md = f'**Début à:** {start_time}  \n'
+    md = f'**Start at:** {start_time}  \n'
     md+= f'**Hostname:** {h}'
     display_md(md)
     #print('Run time             :', _start_time.strftime("%A %d %B %Y, %H:%M:%S"))
     #print('Hostname             :', f'{h[1]} ({h[0]})')
-    path2svg = pwy + 'svg/'
-    md = '<p style="text-align: center"><img width="800px" src="' + path2svg + 'logoDebut.svg" style="margin-left:auto; margin-right:auto"/></p>'
+    path2svg=pwy + 'svg/'
+    md = '<p style="text-align: center"><img width="800px" src="' + path2svg + 'logoPytChem.svg" style="margin-left:auto; margin-right:auto"/></p>'
     display_md(md)
     
 def end(pwy):
@@ -93,9 +93,10 @@ def end(pwy):
     _end_time = datetime.datetime.now()
     end_time = time.strftime("%A %d %B %Y, %H:%M:%S")
     duration = hdelay_ms(_end_time - _start_time)
-    md = f'**Fin à:** {end_time}  \n'
-    md+= f'**Durée:** {duration}'
+    md = f'**End at:** {end_time}  \n'
+    md+= f'**Duration:** {duration}'
     display_md(md)
-    path2svg = pwy + 'svg/'
-    md = '<p style="text-align: center"><img width="800px" src="' + path2svg + 'logoFin.svg" style="margin-left:auto; margin-right:auto"/></p>'
+    path2svg=pwy + 'svg/'
+    md = '<p style="text-align: center"><img width="800px" src="' + path2svg + 'logoEnd.svg" style="margin-left:auto; margin-right:auto"/></p>'
     display_md(md)
+
