@@ -5,3 +5,9 @@ __pycache__
 cpPytChem
 *.docx
 *.ods
+*.ipynb_checkpoints*
+ConcentrationsmM.txt
+Concentrations_mM.txt
+*.aux
+*.log
+*.out 
